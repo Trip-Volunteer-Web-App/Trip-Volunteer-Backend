@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Trip_Volunteer.Core.Common;
 using Trip_Volunteer.Core.Repository;
 using Trip_Volunteer.Core.Service;
@@ -34,6 +37,8 @@ builder.Services.AddScoped<IUserLoginRepository, UserLoginRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IVolunteerRolesRepository, VolunteerRolesRepository>();
 builder.Services.AddScoped<IVolunteersRepository, VolunteersRepository>();
+builder.Services.AddScoped<IWebsiteInformationRepository, WebsiteInformationRepository>();
+
 
 builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
@@ -54,28 +59,24 @@ builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IVolunteerRolesService, VolunteerRolesService>();
 builder.Services.AddScoped<IVolunteersService, VolunteersService>();
-
-
-
-
-
-
-
-
-
-
-
-builder.Services.AddScoped<IWebsiteInformationRepository, WebsiteInformationRepository>();
 builder.Services.AddScoped<IWebsiteInformationService, WebsiteInformationService>();
 
 
-
-
-
-
-
-
-
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretKey@ApiCourse123456"))
+    };
+});
 
 var app = builder.Build();
 
@@ -89,6 +90,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 
