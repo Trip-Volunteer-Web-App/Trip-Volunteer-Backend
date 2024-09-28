@@ -38,6 +38,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IVolunteerRolesRepository, VolunteerRolesRepository>();
 builder.Services.AddScoped<IVolunteersRepository, VolunteersRepository>();
 builder.Services.AddScoped<IWebsiteInformationRepository, WebsiteInformationRepository>();
+builder.Services.AddScoped<IHomePageElementsRepository, HomePageElementsRepository>();
+builder.Services.AddScoped<IAboutUsRepository, AboutUsRepository>();
+
 
 
 builder.Services.AddScoped<IBankService, BankService>();
@@ -60,6 +63,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IVolunteerRolesService, VolunteerRolesService>();
 builder.Services.AddScoped<IVolunteersService, VolunteersService>();
 builder.Services.AddScoped<IWebsiteInformationService, WebsiteInformationService>();
+builder.Services.AddScoped<IHomePageElementsService, HomePageElementsService>();
+builder.Services.AddScoped<IAboutUsService, AboutUsService>();
+
 
 
 builder.Services.AddAuthentication(opt =>

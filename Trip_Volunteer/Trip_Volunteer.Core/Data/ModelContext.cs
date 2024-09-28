@@ -55,12 +55,12 @@ namespace Trip_Volunteer.Core.Data
 
             modelBuilder.Entity<Aboutu>(entity =>
             {
-                entity.HasKey(e => e.AboutusPageId)
+                entity.HasKey(e => e.Aboutus_Page_Id)
                     .HasName("SYS_C008461");
 
                 entity.ToTable("ABOUTUS");
 
-                entity.Property(e => e.AboutusPageId)
+                entity.Property(e => e.Aboutus_Page_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("ABOUTUS_PAGE_ID");
@@ -237,17 +237,17 @@ namespace Trip_Volunteer.Core.Data
 
             modelBuilder.Entity<HomePageElement>(entity =>
             {
-                entity.HasKey(e => e.HomePageId)
+                entity.HasKey(e => e.Home_Page_Id)
                     .HasName("SYS_C008459");
 
                 entity.ToTable("HOME_PAGE_ELEMENTS");
 
-                entity.Property(e => e.HomePageId)
+                entity.Property(e => e.Home_Page_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("HOME_PAGE_ID");
 
-                entity.Property(e => e.HeroImage)
+                entity.Property(e => e.Hero_Image)
                     .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("HERO_IMAGE");
@@ -277,12 +277,12 @@ namespace Trip_Volunteer.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("IMAGE5");
 
-                entity.Property(e => e.LogoImage)
+                entity.Property(e => e.Logo_Image)
                     .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("LOGO_IMAGE");
 
-                entity.Property(e => e.LogoText)
+                entity.Property(e => e.Logo_Text)
                     .HasMaxLength(600)
                     .IsUnicode(false)
                     .HasColumnName("LOGO_TEXT");
